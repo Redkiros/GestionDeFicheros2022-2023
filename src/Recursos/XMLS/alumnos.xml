@@ -1,11 +1,64 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <listadealumnos>
-   <alumno>	
-	<nombre>Juan</nombre>
-	<edad>19</edad>
-   </alumno>		
-   <alumno>	
-	<nombre>Maria</nombre>
-	<edad>20</edad>
-   </alumno>		
+    <alumno>
+                        
+        
+        <nombre>Juan</nombre>
+                        
+        
+        <edad>19</edad>
+                    
+    
+    </alumno>
+    <alumno>
+                        
+        
+        <nombre>Maria</nombre>
+                        
+        
+        <edad>20</edad>
+                    
+    
+    </alumno>
+    <alumno>
+                        
+        
+        <nombre>pepe</nombre>
+                        
+        
+        <edad>13</edad>
+                    
+    
+    </alumno>
+    <alumno>
+                        
+        
+        <nombre>pepe</nombre>
+                        
+        
+        <edad>13</edad>
+                    
+    
+    </alumno>
+    <alumno>
+                        
+        
+        <nombre>pepe</nombre>
+                        
+        
+        <edad>13</edad>
+                    
+    
+    </alumno>
+    <alumno>
+                
+        <nombre>pepe</nombre>
+                
+        <edad>13</edad>
+            
+    </alumno>
+    <alumno>
+        <nombre>pepe</nombre>
+        <edad>13</edad>
+    </alumno>
 </listadealumnos>

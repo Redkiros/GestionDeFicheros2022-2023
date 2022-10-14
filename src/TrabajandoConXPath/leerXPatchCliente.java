@@ -1,9 +1,6 @@
 package TrabajandoConXPath;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,16 +17,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class leerXPatch {
+public class leerXPatchCliente {
     public static void main(String[] args) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         Document archivoParseado = null;
         NodeList listaNodos = null;
-        Alumno alAux = null;
-        String nombre = "";
-        String edad = "";
-        ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
-        File archivoXML = new File("src/Recursos/XMLS/alumnos.xml");
+        Cliente alAux = null;
+        String apellido = "";
+        Integer cp;
+        String dni;
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        File archivoXML = new File("src/Recursos/XMLS/clientes.xml");
 
         try {
             DocumentBuilder constructor = factory.newDocumentBuilder();
@@ -38,12 +36,13 @@ public class leerXPatch {
                 archivoParseado.normalize();
             }
             XPath xPath = XPathFactory.newInstance().newXPath();
-            listaNodos = (NodeList) xPath.compile("//alumno").evaluate(archivoParseado, XPathConstants.NODESET);
+            listaNodos = (NodeList) xPath.compile("//cliente").evaluate(archivoParseado, XPathConstants.NODESET);
             for (int i = 0; i < listaNodos.getLength(); i++) {
-                nombre = xPath.compile("nombre").evaluate(listaNodos.item(i));
-                edad = xPath.compile("edad").evaluate(listaNodos.item(i));
-                alAux = new Alumno(nombre, Integer.valueOf(edad));
-                listaAlumnos.add(alAux);
+                dni = xPath.compile("@DNI").evaluate(listaNodos.item(i));
+                apellido = xPath.compile("apellido").evaluate(listaNodos.item(i));
+                cp = Integer.valueOf(xPath.compile("CP").evaluate(listaNodos.item(i)));
+                alAux = new Cliente(dni,apellido, cp);
+                listaClientes.add(alAux);
             }
         } catch (ParserConfigurationException e) {
             throw new RuntimeException(e);
@@ -54,23 +53,24 @@ public class leerXPatch {
         } catch (XPathExpressionException e) {
             throw new RuntimeException(e);
         }
-        alAux = new Alumno("pepe", 13);
+        alAux = new Cliente("24214211A", "Gomez", 34665);
         try {
-            addAlumno(alAux, archivoParseado, archivoXML);
+            addClientes(alAux, archivoParseado, archivoXML);
         } catch (TransformerException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public static void addAlumno(Alumno alAux, Document archivo, File archXML) throws TransformerException {
-        Element elAlumno = archivo.createElement("alumno");
-        Element elTagNombre = archivo.createElement("nombre");
+    public static void addClientes(Cliente alAux, Document archivo, File archXML) throws TransformerException {
+        Element elAlumno = archivo.createElement("cliente");
+        Attr elDni = archivo.createAttribute("@DNI");
+        Element elTagNombre = archivo.createElement("apellido");
         elAlumno.appendChild(elTagNombre);
-        Element elTagEdad = archivo.createElement("edad");
-        elTagNombre.appendChild(archivo.createTextNode(alAux.getNombre()));
+        Element elTagEdad = archivo.createElement("CP");
+        elTagNombre.appendChild(archivo.createTextNode(alAux.getApellido()));
         elAlumno.appendChild(elTagNombre);
-        elTagEdad.appendChild(archivo.createTextNode(alAux.getEdad().toString()));
+        elTagEdad.appendChild(archivo.createTextNode(alAux.getCP().toString()));
         elAlumno.appendChild(elTagEdad);
         Node raiz = archivo.getFirstChild();
         raiz = limpiarNodos(raiz);
