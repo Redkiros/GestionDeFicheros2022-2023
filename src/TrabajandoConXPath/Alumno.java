@@ -10,6 +10,10 @@ public class Alumno {
         this.edad = edad;
     }
 
+    public Alumno() {
+
+    }
+
     public String getNombre() {
         return nombre;
     }
