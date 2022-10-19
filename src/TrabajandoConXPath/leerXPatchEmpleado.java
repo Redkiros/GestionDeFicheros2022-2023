@@ -69,18 +69,25 @@ public class leerXPatchEmpleado {
     }
 
     public static void addEmpleados(Empleado alAux, Document archivo, File archXML) throws TransformerException {
+
         Element elEmpleado = archivo.createElement("empleado");
         Attr elDni = archivo.createAttribute("@DNI");
+
         Element elTagNombre = archivo.createElement("nombre");
         elEmpleado.appendChild(elTagNombre);
+
         Element elTagApellido = archivo.createElement("apellido");
         elEmpleado.appendChild(elTagApellido);
+
         Element elTagSueldo = archivo.createElement("sueldo");
         elEmpleado.appendChild(elTagSueldo);
+
         Element elTagBase = archivo.createElement("base");
         elEmpleado.appendChild(elTagBase);
+
         Element elTagIRPF = archivo.createElement("IRPF");
         elEmpleado.appendChild(elTagIRPF);
+
         Element elTagEdad = archivo.createElement("CP");
         elTagNombre.appendChild(archivo.createTextNode(alAux.getNombre()));
         elTagApellido.appendChild(archivo.createTextNode(alAux.getApellido()));
